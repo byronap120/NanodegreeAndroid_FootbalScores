@@ -21,8 +21,7 @@ import barqsoft.footballscores.R;
  * Created by Byron on 2/14/2016.
  */
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-public class WidgetRemoteViewsFactory implements
-        RemoteViewsFactory {
+public class WidgetRemoteViewsFactory implements RemoteViewsFactory {
 
     public static final int COL_HOME = 3;
     public static final int COL_AWAY = 4;
@@ -42,7 +41,6 @@ public class WidgetRemoteViewsFactory implements
         cursor.moveToPosition(position);
         RemoteViews mView = new RemoteViews(mContext.getPackageName(),
                 R.layout.widget_list_item);
-
         mView.setTextViewText(R.id.homeTextView,cursor.getString(COL_HOME));
         mView.setTextViewText(R.id.awayTextView,cursor.getString(COL_AWAY));
         mView.setTextViewText(R.id.homeScoretextView,cursor.getString(COL_HOME_GOALS));
@@ -63,8 +61,10 @@ public class WidgetRemoteViewsFactory implements
     @Override
     public RemoteViews getLoadingView() {
         return null;
-    }@Override
-     public int getViewTypeCount() {
+    }
+
+    @Override
+    public int getViewTypeCount() {
         return 1;
     }
 
@@ -85,33 +85,14 @@ public class WidgetRemoteViewsFactory implements
     }
 
     private void initData() {
- //       mCollections.clear();
-/*        for (int i = 1; i <= 2; i++) {
-            mCollections.add("ListView item " + i);
-        }*/
-
+        //This date is only for evaluation since this day shows many scores,
+        //this way the widget will show information instead of empty widget
         String[] date = {"2016-02-14"};
-        cursor = contentResolver.query (DatabaseContract.scores_table.buildScoreWithDate() , null, null,date, null);
-/*        while (cursor.moveToNext()) {
-
-            String displayName = cursor.getString(cursor
-                    .getColumnIndex(DatabaseContract.scores_table.HOME_GOALS_COL));
-
-            String displayNameHome = cursor.getString(cursor
-                    .getColumnIndex(DatabaseContract.scores_table.HOME_COL));
-
-            String displayNameVisit = cursor.getString(cursor
-                    .getColumnIndex(DatabaseContract.scores_table.HOME_GOALS_COL));
-
-            String temp = displayNameHome + " - " + displayNameVisit;
-            Log.d("sdf","sadf" + displayName);
-            mCollections.add(temp);
-        }*/
+        cursor = contentResolver.query (DatabaseContract.scores_table.buildScoreWithDate() , null, null, date, null);
     }
 
     @Override
     public void onDestroy() {
-
     }
 
 }

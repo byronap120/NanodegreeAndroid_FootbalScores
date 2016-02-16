@@ -38,4 +38,8 @@
     <string name="separatorText"> - </string>
     <string name="subtitleWidget"> Today Scores </string>
 
+    <string name="description_home_crest">home crest</string>
+    <string name="description_away_crest">away crest</string>
+    <string name="description_share_button">share button</string>
+
 </resources>
